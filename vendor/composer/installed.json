@@ -1,0 +1,287 @@
+{
+    "packages": [
+        {
+            "name": "GearmandPHP/Gearmand",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/owner888/GearmandPHP.git",
+                "reference": "f00a65a24705ab62b742e6e6d8e6c7f007ef7f2c"
+            },
+            "require": {
+                "datashovel/simplehttpclient": "@dev",
+                "ext-event": "*",
+                "phixd/phixd": "@dev",
+                "php": ">=5.4.0",
+                "phreezer/phreezer": "@dev",
+                "schivel/schivel": "@dev",
+                "windowseat/windowseat": "@dev"
+            },
+            "time": "2015-03-05T03:11:52+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "GearmandPHP": "src/"
+                }
+            },
+            "install-path": "../GearmandPHP/Gearmand"
+        },
+        {
+            "name": "datashovel/simplehttpclient",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cameronjacobson/SimpleHttpClient.git",
+                "reference": "0235381782deaec672b3b6e0b39d15f02351a5d8"
+            },
+            "require": {
+                "ext-event": "*",
+                "php": ">=5.4.0"
+            },
+            "time": "2015-03-01T12:47:46+00:00",
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "SimpleHttpClient": "src"
+                }
+            },
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cameron Jacobson",
+                    "email": "cameron@datashovel.com"
+                }
+            ],
+            "description": "SimpleHttpClient written in PHP",
+            "keywords": [
+                "client",
+                "http"
+            ],
+            "install-path": "../datashovel/simplehttpclient"
+        },
+        {
+            "name": "kicken/gearman-php",
+            "version": "1.4.0",
+            "version_normalized": "1.4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kicken/gearman-php.git",
+                "reference": "6653f2739948f390960cfce8a97084ccfb1df093"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kicken/gearman-php/zipball/6653f2739948f390960cfce8a97084ccfb1df093",
+                "reference": "6653f2739948f390960cfce8a97084ccfb1df093",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "time": "2018-06-18T06:49:05+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Kicken\\Gearman\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Keith Maika"
+                }
+            ],
+            "description": "A PHP implementation of the Gearman protocol.",
+            "support": {
+                "issues": "https://github.com/kicken/gearman-php/issues",
+                "source": "https://github.com/kicken/gearman-php/tree/issue-7"
+            },
+            "install-path": "../kicken/gearman-php"
+        },
+        {
+            "name": "mtdowling/transducers",
+            "version": "0.3.0",
+            "version_normalized": "0.3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mtdowling/transducers.php.git",
+                "reference": "32ff6a67b5d5d1930533277a505b4f9d360dbe6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mtdowling/transducers.php/zipball/32ff6a67b5d5d1930533277a505b4f9d360dbe6c",
+                "reference": "32ff6a67b5d5d1930533277a505b4f9d360dbe6c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "time": "2015-01-12T21:00:25+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "src/transducers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/mtdowling/transducers.php/issues",
+                "source": "https://github.com/mtdowling/transducers.php/tree/master"
+            },
+            "install-path": "../mtdowling/transducers"
+        },
+        {
+            "name": "phixd/phixd",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cameronjacobson/Phixd.git",
+                "reference": "652b1761259d253cee6dca69bcbb4e2034019a16"
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "time": "2017-09-29T09:11:12+00:00",
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Phixd": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cameron Jacobson",
+                    "email": "cameron@datashovel.com"
+                }
+            ],
+            "description": "Phixd is basically igorw/evenement with everything static",
+            "keywords": [
+                "emitter",
+                "event"
+            ],
+            "install-path": "../phixd/phixd"
+        },
+        {
+            "name": "phreezer/phreezer",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cameronjacobson/Phreezer.git",
+                "reference": "49a39e5949aaf6fb1115c342ff1d44d35aaeb4fc"
+            },
+            "require": {
+                "datashovel/simplehttpclient": "*@dev",
+                "phixd/phixd": "*@dev"
+            },
+            "time": "2015-05-12T04:47:40+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Phreezer": "src/"
+                }
+            },
+            "install-path": "../phreezer/phreezer"
+        },
+        {
+            "name": "schivel/schivel",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cameronjacobson/Schivel.git",
+                "reference": "eba01bb8caff5a3127f12bbb3ac14ebab245bc27"
+            },
+            "require": {
+                "datashovel/simplehttpclient": "*@dev",
+                "ext-event": "*",
+                "phixd/phixd": "*@dev",
+                "php": ">=5.4.0",
+                "phreezer/phreezer": "*@dev"
+            },
+            "time": "2015-04-17T11:48:00+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Schivel": "src/"
+                }
+            },
+            "install-path": "../schivel/schivel"
+        },
+        {
+            "name": "windowseat/windowseat",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cameronjacobson/WindowSeat.git",
+                "reference": "4d59d0b66ff4ea7e4e108d1b5a4d20975fbb0346"
+            },
+            "require": {
+                "datashovel/simplehttpclient": "@dev",
+                "ext-event": "*",
+                "mtdowling/transducers": "@dev",
+                "phixd/phixd": "@dev",
+                "php": ">=5.4.0",
+                "phreezer/phreezer": "@dev"
+            },
+            "time": "2015-03-02T18:39:33+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "WindowSeat": "src/"
+                }
+            },
+            "install-path": "../windowseat/windowseat"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
