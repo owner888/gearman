@@ -1,0 +1,7 @@
+{
+  "env" : {
+    "{shortname}" : {
+      "db" : "http://{user}:{pass}@{host}:{port}/{dbname}"
+    }
+  }
+}

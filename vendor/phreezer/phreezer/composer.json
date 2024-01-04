@@ -1,0 +1,22 @@
+{
+	"name":"phreezer/phreezer",
+	"repositories":[
+        {
+            "type":"git",
+            "url":"https://github.com/cameronjacobson/Phixd.git"
+        },
+        {
+            "type":"git",
+            "url":"https://github.com/cameronjacobson/SimpleHttpClient.git"
+        }
+	],
+    "require": {
+        "phixd/phixd": "*@dev",
+        "datashovel/simplehttpclient": "*@dev"
+    },
+	"autoload": {
+		"psr-0": {
+			"Phreezer": "src/"
+		}
+	}
+}
