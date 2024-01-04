@@ -55,6 +55,8 @@ class Phreezer
 	 */
 	protected $autoload = TRUE;
 
+	private $useAutoload;
+
 	/**
 	 * @var array
 	 */
