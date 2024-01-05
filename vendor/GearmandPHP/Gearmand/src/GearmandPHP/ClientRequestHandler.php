@@ -35,7 +35,7 @@ class ClientRequestHandler
 	const WORK_DATA = 28;
 	const WORK_WARNING = 29;
 
-	private $bev;
+	private $bev, $ident, $schivel;
 
 	public function __construct($ident, $bev, $schivel){
 		$this->ident = $ident;

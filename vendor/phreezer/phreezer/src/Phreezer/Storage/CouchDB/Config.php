@@ -191,7 +191,9 @@ trait Config
 
 		$reflect = new ReflectionFunction($fn);
 		$args = $reflect->getParameters();
-		if((count($args) > 3) || !$args[0]->isCallable()){
+		// if((count($args) > 3) || !$args[0]->isCallable()){
+        // if((count($args) > 3) || !is_callable($args[0])) {
+        if((count($args) > 3)) {
 			throw new \Exception('setProcessor callback prototype must be $fn(callable $func)');
 		}
 

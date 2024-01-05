@@ -11,4 +11,6 @@ class Job
 	public $uniq_id;
 	public $payload;
 	public $background;
+	public $client_uuid;
+	public $__phreezer_uuid;
 }

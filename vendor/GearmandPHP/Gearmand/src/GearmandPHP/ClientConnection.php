@@ -12,7 +12,7 @@ use \GearmandPHP\ClientResponseHandler;
 
 class ClientConnection
 {
-	private $bev, $base, $buffer, $id, $fd, $headers;
+	private $bev, $base, $buffer, $ident, $index, $id, $fd, $schivel, $headers, $handler;
 
 	const MIN_WATERMARK = 1;
 
