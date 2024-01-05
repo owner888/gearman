@@ -1,0 +1,26 @@
+{
+    "name": "datashovel/simplehttpclient",
+    "description": "SimpleHttpClient written in PHP",
+    "keywords": ["http", "client"],
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Cameron Jacobson",
+            "email": "cameron@datashovel.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-event": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "SimpleHttpClient": "src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

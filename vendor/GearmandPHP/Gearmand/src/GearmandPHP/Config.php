@@ -11,6 +11,7 @@ use \GearmandPHP\EventStore;
 class Config
 {
 	public $base;
+	public $config;
 	public $dns_base;
 	public $server;
 	public $client;

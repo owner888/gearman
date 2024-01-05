@@ -18,6 +18,7 @@ use \GearmandPHP\Job;
 class Gearmand
 {
 	private $config;
+	private $dns_base;
 	private $listener;
 	private $base;
 	private $couchdb;
