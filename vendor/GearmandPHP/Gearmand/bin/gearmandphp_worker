@@ -1,0 +1,17 @@
+#!/usr/bin/php
+<?php
+
+require_once(dirname(__DIR__).'/vendor/autoload.php');
+
+use GearmandPHP\GearmandWorker;
+use GearmandPHP\WorkerConfig;
+
+$config = parse_ini_file(dirname(__DIR__).'/config/work_config.ini',true);
+$base = new EventBase();
+
+$worker = new GearmandWorker(new WorkerConfig(
+	$base,
+	$config['couchdb']
+));
+
+$worker->run();

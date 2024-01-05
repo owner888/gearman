@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd $(dirname $0)/../config/erica/$1
+erica push $2

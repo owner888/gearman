@@ -1,0 +1,7 @@
+{
+  "env" : {
+    "local" : {
+      "db" : "http://test:test@gearmand_persistent:5984/test_gearmandphp"
+    }
+  }
+}

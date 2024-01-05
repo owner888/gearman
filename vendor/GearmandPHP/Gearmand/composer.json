@@ -1,0 +1,39 @@
+{
+    "name":"GearmandPHP/Gearmand",
+    "repositories": [
+        {
+            "type":"git",
+            "url":"https://github.com/cameronjacobson/SimpleHttpClient.git"
+        },
+        {
+            "type":"git",
+            "url":"https://github.com/cameronjacobson/Phixd.git"
+        },
+        {
+            "type":"git",
+            "url":"https://github.com/cameronjacobson/Phreezer.git"
+        },
+        {
+            "type":"git",
+            "url":"https://github.com/cameronjacobson/Schivel.git"
+        },
+        {
+            "type":"git",
+            "url":"https://github.com/cameronjacobson/WindowSeat.git"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-event": "*",
+        "phixd/phixd": "@dev",
+        "phreezer/phreezer": "@dev",
+        "schivel/schivel": "@dev",
+        "datashovel/simplehttpclient": "@dev",
+		"windowseat/windowseat": "@dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "GearmandPHP": "src/"
+        }
+    }
+}

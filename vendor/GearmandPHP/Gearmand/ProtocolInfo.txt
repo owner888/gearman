@@ -1,0 +1,66 @@
+Protocol Specification:
+--------------------------
+http://bazaar.launchpad.net/~tangent-trunk/gearmand/1.2/view/head:/PROTOCOL
+
+
+Header Spec:
+---------------
+4byte magic code:  \0REQ  or  \0RES
+4byte type      :  [see below]
+4byte size      :  number of bytes
+
+
+GearmandPHP [request / response types]
+--------------------------------------
+                    #   Name                Magic  Type
+
+                    1   CAN_DO              REQ    Worker
+                    2   CANT_DO             REQ    Worker
+                    3   RESET_ABILITIES     REQ    Worker
+                    4   PRE_SLEEP           REQ    Worker
+                    9   GRAB_JOB            REQ    Worker
+                    12  WORK_STATUS         REQ    Worker
+                    13  WORK_COMPLETE       REQ    Worker
+                    14  WORK_FAIL           REQ    Worker
+                    16  ECHO_REQ            REQ    Worker
+                    22  SET_CLIENT_ID       REQ    Worker
+                    23  CAN_DO_TIMEOUT      REQ    Worker
+                    24  ALL_YOURS           REQ    Worker
+                    25  WORK_EXCEPTION      REQ    Worker
+                    26  OPTION_REQ          REQ    Worker
+                    28  WORK_DATA           REQ    Worker
+                    29  WORK_WARNING        REQ    Worker
+                    30  GRAB_JOB_UNIQ       REQ    Worker
+
+                    6   NOOP                RES    Worker
+                    10  NO_JOB              RES    Worker
+                    11  JOB_ASSIGN          RES    Worker
+                    31  JOB_ASSIGN_UNIQ     RES    Worker
+                    17  ECHO_RES            RES    Worker
+                    19  ERROR               RES    Worker
+                    27  OPTION_RES          RES    Worker
+
+                    7   SUBMIT_JOB          REQ    Client
+                    15  GET_STATUS          REQ    Client
+                    16  ECHO_REQ            REQ    Client
+                    18  SUBMIT_JOB_BG       REQ    Client
+                    21  SUBMIT_JOB_HIGH     REQ    Client
+                    26  OPTION_REQ          REQ    Client
+                    32  SUBMIT_JOB_HIGH_BG  REQ    Client
+                    33  SUBMIT_JOB_LOW      REQ    Client
+                    34  SUBMIT_JOB_LOW_BG   REQ    Client
+                    35  SUBMIT_JOB_SCHED    REQ    Client
+                    36  SUBMIT_JOB_EPOCH    REQ    Client
+
+                    8   JOB_CREATED         RES    Client
+                    12  WORK_STATUS         RES    Client
+                    13  WORK_COMPLETE       RES    Client
+                    14  WORK_FAIL           RES    Client
+                    17  ECHO_RES            RES    Client
+                    19  ERROR               RES    Client
+                    20  STATUS_RES          RES    Client
+                    25  WORK_EXCEPTION      RES    Client
+                    27  OPTION_RES          RES    Client
+                    28  WORK_DATA           RES    Client
+                    29  WORK_WARNING        RES    Client
+
