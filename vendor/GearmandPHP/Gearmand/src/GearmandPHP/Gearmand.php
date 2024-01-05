@@ -22,6 +22,10 @@ class Gearmand
 	private $listener;
 	private $base;
 	private $couchdb;
+	private $windowseat;
+    private $client_listener;
+    private $worker_listener;
+    private $admin_listener;
 	public static $state;
 	public static $priority_queue;
 
