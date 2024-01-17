@@ -16,6 +16,4 @@ $gearmand = new Gearmand(new Config(
 	$config
 ));
 
-echo 'xxxxx' . PHP_EOL;
 $gearmand->run();
-echo 'sdjflsfl' . PHP_EOL;

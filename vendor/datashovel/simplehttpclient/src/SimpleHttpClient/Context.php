@@ -77,6 +77,7 @@ class Context
 		if(!empty($this->queue)){
 			while(count($this->queue) > 0){
 				$fn = $this->queue->dequeue();
+				echo 'dequeue'. PHP_EOL;
 				$fn(true);
 			}
 		}
@@ -139,22 +140,26 @@ class Context
 			$eventcb->bindTo($this);
 			$bev = new EventBufferEvent($this->getBase(), NULL,
 				EventBufferEvent::OPT_CLOSE_ON_FREE | EventBufferEvent::OPT_DEFER_CALLBACKS,
-				$readcb, NULL, $eventcb, $count
+				$readcb, null, $eventcb, $count
 			);
-			$bev->setWatermark(Event::READ|Event::WRITE, 1, 0);
+			$bev->setWatermark(\Event::READ|\Event::WRITE, 1, 0);
 
-			$bev->enable(Event::READ | Event::WRITE);
+			if(!$bev->enable(\Event::READ | \Event::WRITE)){
+				echo 'failed to enable'.PHP_EOL;
+			}
 
 			$output = $bev->output;
 
-			if (!$output->add(
-				"{$method} {$url} HTTP/1.0\r\n".
+			$str = "{$method} {$url} HTTP/1.0\r\n".
 				"Host: {$this->getHost()}:{$this->getPort()}\r\n".
 				(empty($this->getUser()) ? '' : 'Authorization: Basic '.base64_encode($this->getUser().':'.$this->getPassword())."\r\n").
 				"Content-Type: {$this->getContentType()}\r\n".
 				'Content-Length: ' . strlen($body) . "\r\n".
-				"Connection: Close\r\n\r\n{$body}"
-			)) {
+				"Connection: Close\r\n\r\n{$body}";
+			$ret = $output->add($str);
+			// var_dump($ret, "Host: {$this->getHost()}:{$this->getPort()}", $this->getUser().':'.$this->getPassword());
+
+			if (!$ret) {
 				exit("Failed adding request to output buffer\n");
 			}
 

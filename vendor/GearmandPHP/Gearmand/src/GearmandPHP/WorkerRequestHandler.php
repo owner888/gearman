@@ -47,6 +47,8 @@ const CLIENT_WORK_WARNING = 21;
 	const JOB_ASSIGN_ALL = 40;
 
 	private $bev;
+	public $ident;
+	public $schivel;
 
 	public function __construct($ident,$bev,$schivel){
 		$this->ident = $ident;

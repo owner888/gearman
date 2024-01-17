@@ -13,6 +13,9 @@ use \GearmandPHP\ClientResponseHandler;
 class WorkerConnection
 {
 	public $handler;
+	public $ident;
+	public $index;
+	public $schivel;
 	private $bev, $base, $buffer, $id, $fd, $headers;
 
 	const MIN_WATERMARK = 1;
@@ -62,7 +65,7 @@ class WorkerConnection
 */
 	}
 
-	public function readCallback($bev/*, $arg*/) {
+	public function readCallback($bev, $arg) {
 		$input = $bev->getInput();
 		if(empty($this->headers)){
 			if($input->length >= 12){
@@ -89,10 +92,10 @@ class WorkerConnection
 		}
 	}
 
-	public function writeCallback($bev/*, $arg*/) {
+	public function writeCallback($bev, $arg) {
 	}
 
-	public function eventCallback($bev, $events/*, $arg*/) {
+	public function eventCallback($bev, $events, $arg) {
 		if ($events & EventBufferEvent::TIMEOUT) {
 		}
 		if ($events & EventBufferEvent::EOF) {

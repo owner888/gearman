@@ -96,12 +96,13 @@ class WindowSeat
 		if(EventBufferEvent::TIMEOUT & $events){
 		}
 		if(EventBufferEvent::CONNECTED & $events){
+			echo 'CONNECTED' .PHP_EOL;
 		}
 	}
 
 	public function readcb($bev,$base){
 		$buf = $bev->getInput();
-		while($data = trim($buf->readLine(EventBuffer::EOL_ANY))){
+		while($data = trim($buf->readLine(EventBuffer::EOL_ANY) ?? '')){
 			if($parsed = json_decode($data,true)){
 				if(!empty($parsed['_deleted'])){
 					continue;
