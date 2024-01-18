@@ -29,10 +29,10 @@ class WindowSeat
 		$this->instructions = $config->getInstructions();
 		if(!empty($this->instructions['thaw'])) {
 			$this->couchdb = new CouchDB([
-				'host'=>$this->config->getHost(),
-				'database'=>$this->config->getDbName(),
-				'port'=>$this->config->getPort(),
-				'base'=>$this->config->getBase()
+				'host'     => $this->config->getHost(),
+				'database' => $this->config->getDbName(),
+				'port'     => $this->config->getPort(),
+				'base'     => $this->config->getBase()
 			]);
 		}
 	}
@@ -80,10 +80,12 @@ class WindowSeat
 		$this->bev->connectHost($this->dnsbase,$this->config->getHost(),$this->config->getPort(),EventUtil::AF_UNSPEC);
 	}
 
-	public function writecb($bev, $base) {
+	public function writecb($bev, $base) 
+	{
 	}
 
-	public function eventcb($bev, $events, $base) {
+	public function eventcb($bev, $events, $base) 
+	{
 		if(EventBufferEvent::READING & $events) {
 			echo 'CouchDB Reading' .PHP_EOL;
 		}
@@ -107,28 +109,44 @@ class WindowSeat
 	// read CouchDB
 	public function readcb($bev,$base) {
 		$buf = $bev->getInput();
-		while($data = trim($buf->readLine(EventBuffer::EOL_ANY) ?? '')) {
-			if($parsed = json_decode($data,true)) {
-				print_r($parsed);
+		while($data = trim($buf->readLine(EventBuffer::EOL_ANY) ?? '')) 
+		{
+			if($parsed = json_decode($data,true)) 
+			{
+				// print_r($parsed);
+				if(isset($parsed['error'])) 
+				{
+					if ($parsed['error'] == 'not_found' || $parsed['error'] == 'unauthorized') 
+					{
+						echo $parsed['reason'] .PHP_EOL;
+					}
+				}
 				
-				if(!empty($parsed['_deleted'])) {
+				if(!empty($parsed['_deleted'])) 
+				{
 					continue;
 				}
-				if(isset($parsed['last_seq'])) {
+
+				if(isset($parsed['last_seq'])) 
+				{
 					$this->last_seq = $parsed['last_seq'];
 					$this->bev->free();
 					$this->connect();
 				}
-				else if(isset($parsed['seq'])) {
-					if($this->instructions['retrieve_docs']) {
+				else if(isset($parsed['seq'])) 
+				{
+					if($this->instructions['retrieve_docs']) 
+					{
 						$worker = new CouchWorker($parsed,$this);
 						$worker->retrieveDoc();
 					}
-					else if($this->instructions['thaw']) {
+					else if($this->instructions['thaw']) 
+					{
 						$worker = new CouchWorker($parsed,$this);
 						$worker->dispatchThaw($parsed);
 					}
-					else{
+					else
+					{
 						$ev = $this->eventHandler->createEvent(
 							$parsed['id'],
 							$this->instructions['parse_json'] ? $parsed : $data
@@ -136,17 +154,21 @@ class WindowSeat
 						$this->dispatchEvent($ev);
 					}
 				}
-				else{
+				else
+				{
 					// debugging only.
 				}
 			}
-			else{
+			else
+			{
 				// debugging only.
+				// echo 'CouchDB  Error 222' .PHP_EOL;
 			}
 		}
 	}
 
-	public function dispatchEvent(EventInterface $event) {
+	public function dispatchEvent(EventInterface $event) 
+	{
 		$this->eventHandler->handle($event);
 	}
 

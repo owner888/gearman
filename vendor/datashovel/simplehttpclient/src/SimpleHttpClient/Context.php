@@ -102,8 +102,10 @@ class Context
 
 			$this->buffers[$count] = '';
 
+			// print_r(json_decode($body, true));
+
 			$readcb = function($bev, $count){
-				//$bev->readBuffer($bev->input);
+				// var_dump($bev->readBuffer($bev->input));
 				$this->buffers[$count] .= $bev->input->read($bev->input->length);
 			};
 
