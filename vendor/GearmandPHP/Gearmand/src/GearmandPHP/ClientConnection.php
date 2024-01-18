@@ -91,6 +91,7 @@ class ClientConnection
 			if($input->length >= 12){
 				switch(chr(implode('',unpack("c",substr($input->read(4),3))))){
 					case 'Q':
+						echo '收到client回应' .PHP_EOL;
 						$this->headers['which'] = 'REQ';
 						$this->handler = new ClientRequestHandler($this->ident, $bev, $this->schivel);
 						break;

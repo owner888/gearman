@@ -110,6 +110,7 @@ class Gearmand
 	public function clientConnect($listener, $fd, $address, $ctx) {
 		$base = $this->config->base;
 		$ident = $this->getUUID('client');
+		echo 'client 连接上 ' . $ident . PHP_EOL;
 		self::$state['client'][$ident] = array(
 			'connection'=>new ClientConnection($base, $fd, $ident, $this->couchdb)
 		);
@@ -118,6 +119,7 @@ class Gearmand
 	public function workerConnect($listener, $fd, $address, $ctx) {
 		$base = $this->config->base;
 		$ident = $this->getUUID('worker');
+		echo 'worker 连接上 ' . $ident . PHP_EOL;
 		self::$state['worker'][$ident] = array(
 			'connection'=>new WorkerConnection($base, $fd, $ident, $this->couchdb)
 		);

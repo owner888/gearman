@@ -117,7 +117,7 @@ class Connection {
         if (!$this->stream){
             $this->connect($timeout);
         }
-        echo 'sfjsk';
+        echo '发送 ' . (string)$packet . ' 到server' . PHP_EOL;
         $this->write((string)$packet, $timeout);
     }
 
