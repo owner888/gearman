@@ -24,10 +24,10 @@ class WindowSeat
 	private $instructions;
 	public $dnsbase;
 
-	public function __construct(CouchConfig $config){
+	public function __construct(CouchConfig $config) {
 		$this->config = $config;
 		$this->instructions = $config->getInstructions();
-		if(!empty($this->instructions['thaw'])){
+		if(!empty($this->instructions['thaw'])) {
 			$this->couchdb = new CouchDB([
 				'host'=>$this->config->getHost(),
 				'database'=>$this->config->getDbName(),
@@ -36,26 +36,26 @@ class WindowSeat
 			]);
 		}
 	}
-	public function getConfig(){
+	public function getConfig() {
 		return $this->config;
 	}
-	public function getInstructions(){
+	public function getInstructions() {
 		return $this->instructions;
 	}
-	public function getEventHandler(){
+	public function getEventHandler() {
 		return $this->eventHandler;
 	}
 
-	public function setEventHandler(EventHandlerInterface $eh){
+	public function setEventHandler(EventHandlerInterface $eh) {
 		$this->eventHandler = $eh;
 	}
 
-	public function initialize(){
+	public function initialize() {
 		$this->dnsbase = new EventDnsBase($this->config->getBase(),true);
 		$this->connect();
 	}
 
-	private function connect(){
+	private function connect() {
 		$this->bev = new EventBufferEvent(
 			$this->config->getBase(),
 			null,
@@ -68,7 +68,7 @@ class WindowSeat
 		$this->bev->enable(Event::READ|Event::WRITE);
 		$output = $this->bev->getOutput();
 		$path = $this->config->getPath();
-		if(!empty($this->last_seq)){
+		if(!empty($this->last_seq)) {
 			$path .= '&since='.$this->last_seq;
 		}
 		$output->add(implode("\r\n",array(
@@ -80,44 +80,51 @@ class WindowSeat
 		$this->bev->connectHost($this->dnsbase,$this->config->getHost(),$this->config->getPort(),EventUtil::AF_UNSPEC);
 	}
 
-	public function writecb($bev, $base){
+	public function writecb($bev, $base) {
 	}
 
-	public function eventcb($bev, $events, $base){
-		if(EventBufferEvent::READING & $events){
+	public function eventcb($bev, $events, $base) {
+		if(EventBufferEvent::READING & $events) {
+			echo 'CouchDB Reading' .PHP_EOL;
 		}
-		if(EventBufferEvent::WRITING & $events){
+		if(EventBufferEvent::WRITING & $events) {
+			echo 'CouchDB Writing' .PHP_EOL;
 		}
-		if(EventBufferEvent::EOF & $events){
+		if(EventBufferEvent::EOF & $events) {
+			echo 'CouchDB eof' .PHP_EOL;
 		}
-		if(EventBufferEvent::ERROR & $events){
+		if(EventBufferEvent::ERROR & $events) {
 			error_log('ERROR: WindowSeat\CouchWorker '.EventUtil::getLastSocketError(),' '.EventUtil::getLastSocketErrno());
 		}
-		if(EventBufferEvent::TIMEOUT & $events){
+		if(EventBufferEvent::TIMEOUT & $events) {
+			echo 'CouchDB Timeout' .PHP_EOL;
 		}
-		if(EventBufferEvent::CONNECTED & $events){
-			echo 'CONNECTED' .PHP_EOL;
+		if(EventBufferEvent::CONNECTED & $events) {
+			echo 'CouchDB Connected' .PHP_EOL;
 		}
 	}
 
-	public function readcb($bev,$base){
+	// read CouchDB
+	public function readcb($bev,$base) {
 		$buf = $bev->getInput();
-		while($data = trim($buf->readLine(EventBuffer::EOL_ANY) ?? '')){
-			if($parsed = json_decode($data,true)){
-				if(!empty($parsed['_deleted'])){
+		while($data = trim($buf->readLine(EventBuffer::EOL_ANY) ?? '')) {
+			if($parsed = json_decode($data,true)) {
+				print_r($parsed);
+				
+				if(!empty($parsed['_deleted'])) {
 					continue;
 				}
-				if(isset($parsed['last_seq'])){
+				if(isset($parsed['last_seq'])) {
 					$this->last_seq = $parsed['last_seq'];
 					$this->bev->free();
 					$this->connect();
 				}
-				else if(isset($parsed['seq'])){
-					if($this->instructions['retrieve_docs']){
+				else if(isset($parsed['seq'])) {
+					if($this->instructions['retrieve_docs']) {
 						$worker = new CouchWorker($parsed,$this);
 						$worker->retrieveDoc();
 					}
-					else if($this->instructions['thaw']){
+					else if($this->instructions['thaw']) {
 						$worker = new CouchWorker($parsed,$this);
 						$worker->dispatchThaw($parsed);
 					}
@@ -139,7 +146,7 @@ class WindowSeat
 		}
 	}
 
-	public function dispatchEvent(EventInterface $event){
+	public function dispatchEvent(EventInterface $event) {
 		$this->eventHandler->handle($event);
 	}
 
