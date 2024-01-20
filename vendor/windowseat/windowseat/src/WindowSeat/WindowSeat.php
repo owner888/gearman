@@ -71,10 +71,11 @@ class WindowSeat
 		if(!empty($this->last_seq)) {
 			$path .= '&since='.$this->last_seq;
 		}
-		$path = $path . ' -u "admin:123456"';
+
 		$output->add(implode("\r\n",array(
 			'GET '.$path.' HTTP/1.1',
 			'Host: '.$this->config->getHost(),
+			(empty($this->config->getUser()) ? '' : 'Authorization: Basic '.base64_encode($this->config->getUser().':'.$this->config->getPassword())."\r\n").
 			'Content-Length: 0',
 			'Connection: Keep-Alive'
 		))."\r\n\r\n");

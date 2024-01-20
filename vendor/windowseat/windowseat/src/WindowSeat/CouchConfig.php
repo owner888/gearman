@@ -26,6 +26,14 @@ class CouchConfig
 		return $this->config['port'];
 	}
 
+	public function getUser(){
+		return $this->config['user'];
+	}
+
+	public function getPassword(){
+		return $this->config['pass'];
+	}
+
 	public function getInstructions(){
 		return array(
 			'parse_json'=> $this->config['parse_json'] ?: false,
