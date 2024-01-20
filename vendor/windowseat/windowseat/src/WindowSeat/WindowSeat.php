@@ -71,13 +71,14 @@ class WindowSeat
 		if(!empty($this->last_seq)) {
 			$path .= '&since='.$this->last_seq;
 		}
+		$path = $path . ' -u "admin:123456"';
 		$output->add(implode("\r\n",array(
 			'GET '.$path.' HTTP/1.1',
 			'Host: '.$this->config->getHost(),
 			'Content-Length: 0',
 			'Connection: Keep-Alive'
 		))."\r\n\r\n");
-		$this->bev->connectHost($this->dnsbase,$this->config->getHost(),$this->config->getPort(),EventUtil::AF_UNSPEC);
+		$this->bev->connectHost($this->dnsbase, $this->config->getHost(), $this->config->getPort(), EventUtil::AF_UNSPEC);
 	}
 
 	public function writecb($bev, $base) 
@@ -107,7 +108,7 @@ class WindowSeat
 	}
 
 	// read CouchDB
-	public function readcb($bev,$base) {
+	public function readcb($bev, $base) {
 		$buf = $bev->getInput();
 		while($data = trim($buf->readLine(EventBuffer::EOL_ANY) ?? '')) 
 		{
@@ -118,7 +119,7 @@ class WindowSeat
 				{
 					if ($parsed['error'] == 'not_found' || $parsed['error'] == 'unauthorized') 
 					{
-						echo $parsed['reason'] .PHP_EOL;
+						echo $this->config->getDbName() . " " . $parsed['reason'] . PHP_EOL;
 					}
 				}
 				
